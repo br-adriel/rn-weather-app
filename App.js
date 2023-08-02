@@ -1,9 +1,11 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.container}>
+        <Feather name='sun' size={100} />
         <Text style={styles.temp}>6</Text>
         <Text style={styles.feels}>Feels like 5</Text>
         <View style={styles.highLowWrapper}>
@@ -23,10 +25,13 @@ const styles = StyleSheet.create({
   bodyWrapper: {
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
+    paddingLeft: 25,
+    paddingBottom: 40,
   },
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   description: {
     fontSize: 48,
