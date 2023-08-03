@@ -60,7 +60,7 @@ function UpcomingWeather() {
     <SafeAreaView style={styles.container}>
       <StatusBar translucent backgroundColor='transparent' />
       <ImageBackground
-        source={require('../../assets/img/background.jpg')}
+        source={require('../../assets/img/bg_clouds.jpg')}
         style={styles.image}
       >
         <Text style={styles.title}>Upcoming</Text>
