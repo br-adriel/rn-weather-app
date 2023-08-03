@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
+  ImageBackground,
 } from 'react-native';
 
 const DATA = [
@@ -69,13 +71,18 @@ function UpcomingWeather() {
   );
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar translucent />
-      <Text>Upcoming weather</Text>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.dt_txt}
-      />
+      <StatusBar translucent backgroundColor='transparent' />
+      <ImageBackground
+        source={require('../../assets/img/background.jpg')}
+        style={styles.image}
+      >
+        <Text style={styles.title}>Upcoming</Text>
+        <FlatList
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.dt_txt}
+        />
+      </ImageBackground>
     </SafeAreaView>
   );
 }
@@ -83,24 +90,33 @@ function UpcomingWeather() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'red',
-    marginTop: StatusBar.currentHeight || 0,
   },
   date: {
     fontSize: 15,
   },
   item: {
+    borderRadius: 8,
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    borderWidth: 5,
-    backgroundColor: 'pink',
+    backgroundColor: '#FFFD',
+  },
+  image: {
+    paddingTop: StatusBar.currentHeight || 0,
+    flex: 1,
+    objectFit: 'cover',
   },
   temp: {
     fontSize: 20,
+  },
+  title: {
+    color: 'white',
+    fontSize: 30,
+    textAlign: 'center',
+    marginVertical: 10,
   },
 });
 
