@@ -6,7 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import Badge from '../components/Badge';
 
 function City() {
   return (
@@ -19,18 +19,9 @@ function City() {
         <Text style={[styles.titleText, styles.cityName]}>London, UK</Text>
 
         <View style={styles.cityInfoWrapper}>
-          <View style={styles.cityInfo}>
-            <Feather name='user' size={20} />
-            <Text>8000</Text>
-          </View>
-          <View style={styles.cityInfo}>
-            <Feather name='sunrise' size={20} />
-            <Text>05:22</Text>
-          </View>
-          <View style={styles.cityInfo}>
-            <Feather name='sunset' size={20} />
-            <Text>17:25</Text>
-          </View>
+          <Badge iconName='user' text='8000' />
+          <Badge iconName='sunrise' text='05:22' />
+          <Badge iconName='sunset' text='17:25' />
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -38,15 +29,6 @@ function City() {
 }
 
 const styles = StyleSheet.create({
-  cityInfo: {
-    backgroundColor: '#FFFA',
-    padding: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 8,
-    justifyContent: 'center',
-    gap: 4,
-  },
   cityInfoWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -60,9 +42,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-  },
-  countryName: {
-    fontSize: 30,
   },
   image: {
     flex: 1,
