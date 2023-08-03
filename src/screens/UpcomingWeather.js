@@ -1,14 +1,12 @@
-import { Feather } from '@expo/vector-icons';
 import {
   FlatList,
+  ImageBackground,
   SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
-  View,
-  Image,
-  ImageBackground,
 } from 'react-native';
+import ListItem from '../components/ListItem';
 
 const DATA = [
   {
@@ -49,20 +47,9 @@ const DATA = [
   },
 ];
 
-function Item({ dt_txt, min, max, condition }) {
-  return (
-    <View style={styles.item}>
-      <Feather name='sun' size={50} />
-      <Text style={styles.date}>{dt_txt}</Text>
-      <Text style={styles.temp}>{min}</Text>
-      <Text style={styles.temp}>{max}</Text>
-    </View>
-  );
-}
-
 function UpcomingWeather() {
   const renderItem = ({ item }) => (
-    <Item
+    <ListItem
       condition={item.weather[0].main}
       dt_txt={item.dt_txt}
       max={item.main.temp_max}
@@ -91,26 +78,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  date: {
-    fontSize: 15,
-  },
-  item: {
-    borderRadius: 8,
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    backgroundColor: '#FFFD',
-  },
   image: {
     paddingTop: StatusBar.currentHeight || 0,
     flex: 1,
     objectFit: 'cover',
-  },
-  temp: {
-    fontSize: 20,
   },
   title: {
     color: 'white',
