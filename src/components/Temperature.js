@@ -4,7 +4,7 @@ import Card from './Card';
 
 function Temperature({ temeperature, unit, feels }) {
   return (
-    <Card>
+    <Card style={{ padding: 12 }}>
       <View style={styles.wrapper}>
         <View style={styles.temperatureWrapper}>
           <Feather name='sun' size={100} />
