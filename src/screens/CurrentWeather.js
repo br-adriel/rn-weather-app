@@ -6,8 +6,9 @@ import {
   Text,
   View,
 } from 'react-native';
-import Temperature from '../components/Temperature';
 import Card from '../components/Card';
+import HighLowTemperatures from '../components/HighLowTemperatures';
+import Temperature from '../components/Temperature';
 
 function CurrentWeather() {
   return (
@@ -19,14 +20,7 @@ function CurrentWeather() {
       >
         <View style={styles.container}>
           <Temperature feels={5} temeperature={6} unit='C' />
-          <View style={styles.highLowWrapper}>
-            <Card style={styles.highLow}>
-              <Text style={styles.highLowtext}>High: 8</Text>
-            </Card>
-            <Card style={styles.highLow}>
-              <Text style={styles.highLowtext}>Low: 6</Text>
-            </Card>
-          </View>
+          <HighLowTemperatures high={8} low={6} />
           <Card style={{ padding: 16 }}>
             <Text style={styles.description}>It's sunny</Text>
             <Text style={styles.message}>It's a perfect Tshirt weather</Text>
@@ -47,19 +41,6 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 32,
-  },
-  highLow: {
-    padding: 16,
-    flexGrow: 1,
-  },
-  highLowtext: {
-    fontSize: 20,
-    textAlign: 'center',
-  },
-  highLowWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: 8,
   },
   image: {
     flex: 1,
