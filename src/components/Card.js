@@ -1,15 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 
-function Card({ children }) {
-  return <View style={styles.wrapper}>{children}</View>;
+function Card({ children, style }) {
+  return <View style={[styles.wrapper, style]}>{children}</View>;
 }
 
 const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#FFFC',
-    padding: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
     borderRadius: 8,
   },
 });
