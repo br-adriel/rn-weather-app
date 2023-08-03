@@ -3,11 +3,10 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
-import Card from '../components/Card';
 import HighLowTemperatures from '../components/HighLowTemperatures';
+import MessageCard from '../components/MessageCard';
 import Temperature from '../components/Temperature';
 
 function CurrentWeather() {
@@ -21,10 +20,10 @@ function CurrentWeather() {
         <View style={styles.container}>
           <Temperature feels={5} temeperature={6} unit='C' />
           <HighLowTemperatures high={8} low={6} />
-          <Card style={{ padding: 16 }}>
-            <Text style={styles.description}>It's sunny</Text>
-            <Text style={styles.message}>It's a perfect Tshirt weather</Text>
-          </Card>
+          <MessageCard
+            title="It's sunny"
+            message="It's the perfect time for T-shirts"
+          />
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -39,15 +38,9 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingTop: StatusBar.currentHeight || 0,
   },
-  description: {
-    fontSize: 32,
-  },
   image: {
     flex: 1,
     objectFit: 'cover',
-  },
-  message: {
-    fontSize: 18,
   },
   wrapper: {
     flex: 1,
