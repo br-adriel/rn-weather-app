@@ -12,7 +12,7 @@ function Badge({ iconName, text }) {
 
 const styles = StyleSheet.create({
   badgeWrapper: {
-    backgroundColor: '#FFFA',
+    backgroundColor: '#FFFC',
     padding: 12,
     flexDirection: 'row',
     alignItems: 'center',
