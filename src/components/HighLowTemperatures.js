@@ -5,10 +5,10 @@ function HighLowTemperatures({ high, low }) {
   return (
     <View style={styles.highLowWrapper}>
       <Card style={styles.highLow}>
-        <Text style={styles.highLowtext}>High: {high}</Text>
+        <Text style={styles.highLowtext}>High: {high}°C</Text>
       </Card>
       <Card style={styles.highLow}>
-        <Text style={styles.highLowtext}>Low: {low}</Text>
+        <Text style={styles.highLowtext}>Low: {low}°C</Text>
       </Card>
     </View>
   );
