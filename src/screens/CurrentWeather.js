@@ -8,8 +8,15 @@ import {
 import HighLowTemperatures from '../components/HighLowTemperatures';
 import MessageCard from '../components/MessageCard';
 import Temperature from '../components/Temperature';
+import { weatherTypes } from '../utils/weatherTypes';
 
-function CurrentWeather() {
+function CurrentWeather({ weatherData }) {
+  const {
+    main: { temp, feels_like, temp_max, temp_min },
+    weather,
+  } = weatherData;
+  const weatherCondition = weather[0].main;
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <StatusBar backgroundColor='transparent' translucent />
@@ -18,11 +25,16 @@ function CurrentWeather() {
         style={styles.image}
       >
         <View style={styles.container}>
-          <Temperature feels={5} temeperature={6} unit='C' />
-          <HighLowTemperatures high={8} low={6} />
+          <Temperature
+            feels={feels_like}
+            temeperature={temp}
+            unit='C'
+            iconName={weatherTypes[weatherCondition].icon}
+          />
+          <HighLowTemperatures high={temp_max} low={temp_min} />
           <MessageCard
-            title="It's sunny"
-            message="It's the perfect time for T-shirts"
+            title={weather[0].description}
+            message={weatherTypes[weatherCondition].message}
           />
         </View>
       </ImageBackground>

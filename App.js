@@ -6,10 +6,11 @@ import Loading from './src/screens/Loading';
 export default function App() {
   const [loading, error, weather] = useGetWeather();
 
-  if (loading) return <Loading />;
-  return (
-    <NavigationContainer>
-      <Tabs />
-    </NavigationContainer>
-  );
+  if (weather)
+    return (
+      <NavigationContainer>
+        <Tabs weather={weather} />
+      </NavigationContainer>
+    );
+  return <Loading />;
 }

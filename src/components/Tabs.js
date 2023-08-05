@@ -6,7 +6,7 @@ import UpcomingWeather from '../screens/UpcomingWeather';
 
 const Tab = createBottomTabNavigator();
 
-export default function Tabs() {
+export default function Tabs({ weather }) {
   return (
     <Tab.Navigator
       initialRouteName='Current'
@@ -37,13 +37,14 @@ export default function Tabs() {
       />
       <Tab.Screen
         name='Current'
-        component={CurrentWeather}
         options={{
           tabBarIcon: (props) => (
             <Feather name='cloud' color={props.color} size={props.size} />
           ),
         }}
-      />
+      >
+        {() => <CurrentWeather weatherData={weather} />}
+      </Tab.Screen>
       <Tab.Screen
         name='City'
         component={City}
