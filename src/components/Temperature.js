@@ -2,12 +2,12 @@ import { Feather } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import Card from './Card';
 
-function Temperature({ temeperature, unit, feels }) {
+function Temperature({ temeperature, unit, feels, iconName }) {
   return (
     <Card style={{ padding: 12 }}>
       <View style={styles.wrapper}>
         <View style={styles.temperatureWrapper}>
-          <Feather name='sun' size={100} />
+          <Feather name={iconName} size={100} />
           <View style={styles.temperature}>
             <Text style={styles.temperatureValue}>{temeperature}</Text>
             <Text style={styles.temperatureUnit}>°{unit}</Text>
