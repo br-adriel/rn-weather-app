@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import {
   ImageBackground,
   SafeAreaView,
@@ -8,7 +9,13 @@ import {
 } from 'react-native';
 import Badge from '../components/Badge';
 
-function City() {
+const formatter = new Intl.NumberFormat('pt-BR', {
+  notation: 'compact',
+});
+
+function City({ weatherData }) {
+  const { name, country, population, sunrise, sunset } = weatherData;
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor='transparent' translucent />
@@ -16,12 +23,17 @@ function City() {
         source={require('../../assets/img/bg_city.jpg')}
         style={styles.image}
       >
-        <Text style={[styles.titleText, styles.cityName]}>London, UK</Text>
+        <Text style={[styles.titleText, styles.cityName]}>
+          {name}, {country}
+        </Text>
 
         <View style={styles.cityInfoWrapper}>
-          <Badge iconName='user' text='8000' />
-          <Badge iconName='sunrise' text='05:22' />
-          <Badge iconName='sunset' text='17:25' />
+          <Badge iconName='user' text={formatter.format(population)} />
+          <Badge
+            iconName='sunrise'
+            text={dayjs.unix(sunrise).format('HH:mm')}
+          />
+          <Badge iconName='sunset' text={dayjs.unix(sunset).format('HH:mm')} />
         </View>
       </ImageBackground>
     </SafeAreaView>
