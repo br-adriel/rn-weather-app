@@ -14,7 +14,7 @@ export const useGetWeather = () => {
       if (!location) return;
       const { latitude, longitude } = location.coords;
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}&units=metric`
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}&units=metric`
       );
       const data = await res.json();
       setWeather(data);
