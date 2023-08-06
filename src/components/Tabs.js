@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 export default function Tabs({ weather }) {
   return (
     <Tab.Navigator
-      initialRouteName='Current'
+      initialRouteName='Hoje'
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: '#000',
@@ -34,7 +34,7 @@ export default function Tabs({ weather }) {
       }}
     >
       <Tab.Screen
-        name='Current'
+        name='Hoje'
         options={{
           tabBarIcon: (props) => (
             <Feather name='cloud' color={props.color} size={props.size} />
@@ -44,7 +44,7 @@ export default function Tabs({ weather }) {
         {() => <CurrentWeather weatherData={weather} />}
       </Tab.Screen>
       <Tab.Screen
-        name='Upcoming'
+        name='Próximos dias'
         options={{
           tabBarIcon: (props) => (
             <Feather name='clock' color={props.color} size={props.size} />
