@@ -10,8 +10,10 @@ import {
 import HighLowTemperatures from '../components/HighLowTemperatures';
 import Location from '../components/Location';
 import MessageCard from '../components/MessageCard';
+import SunriseSunset from '../components/SunriseSunset';
 import Temperature from '../components/Temperature';
 import WeatherImageBg from '../components/WeatherImageBg';
+import Wind from '../components/Wind';
 import { weatherTypes } from '../utils/weatherTypes';
 
 function CurrentWeather({ weatherData }) {
@@ -19,6 +21,7 @@ function CurrentWeather({ weatherData }) {
 
   const {
     main: { temp, feels_like, temp_max, temp_min },
+    wind,
     weather,
   } = weatherData.list[0];
   const { name, country, sunrise, sunset } = weatherData.city;
@@ -39,6 +42,11 @@ function CurrentWeather({ weatherData }) {
             <View style={styles.container}>
               <View style={{ height: 200 }} />
               <Location country={country} name={name} />
+              <SunriseSunset sunrise={sunrise} sunset={sunset} />
+              <MessageCard
+                title={weather[0].description}
+                message={weatherTypes[weatherCondition].message}
+              />
               <Temperature
                 feels={feels_like}
                 temeperature={temp}
@@ -46,10 +54,7 @@ function CurrentWeather({ weatherData }) {
                 iconName={weatherTypes[weatherCondition].icon}
               />
               <HighLowTemperatures high={temp_max} low={temp_min} />
-              <MessageCard
-                title={weather[0].description}
-                message={weatherTypes[weatherCondition].message}
-              />
+              <Wind {...wind} />
             </View>
           </ScrollView>
         </LinearGradient>
