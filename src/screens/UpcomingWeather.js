@@ -1,14 +1,40 @@
+import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import dayjs from 'dayjs';
+import { LinearGradient } from 'expo-linear-gradient';
 import {
   FlatList,
-  ImageBackground,
   SafeAreaView,
+  SectionList,
   StatusBar,
   StyleSheet,
   Text,
+  View,
 } from 'react-native';
+import Card from '../components/Card';
 import ListItem from '../components/ListItem';
+import { weatherTypes } from '../utils/weatherTypes';
 
 function UpcomingWeather({ weatherData }) {
+  const paddingBottom = useBottomTabBarHeight();
+
+  const data = {};
+  weatherData.forEach((item) => {
+    const date = item.dt_txt.split(' ')[0];
+    if (dayjs().format('DD/MM') !== dayjs(date).format('DD/MM')) {
+      if (!data[date]) {
+        data[date] = [];
+      }
+      data[date].push(item);
+    }
+  });
+
+  const arrayData = Object.keys(data).map((key) => {
+    return {
+      title: key,
+      data: data[key],
+    };
+  });
+
   const renderItem = ({ item }) => (
     <ListItem
       condition={item.weather[0].main}
@@ -19,19 +45,41 @@ function UpcomingWeather({ weatherData }) {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { paddingBottom: paddingBottom }]}>
       <StatusBar translucent backgroundColor='transparent' />
-      <ImageBackground
-        source={require('../../assets/img/bg_clouds.jpg')}
-        style={styles.image}
+      <LinearGradient
+        colors={weatherTypes[weatherData[0].weather[0].main].gradientColors}
+        style={{ flex: 1, paddingTop: StatusBar.currentHeight || 0 }}
       >
-        <Text style={styles.title}>Upcoming</Text>
-        <FlatList
-          data={weatherData}
-          renderItem={renderItem}
+        <SectionList
+          contentContainerStyle={{ paddingVertical: 8 }}
+          sections={arrayData}
+          renderItem={() => null}
           keyExtractor={(item) => item.dt_txt}
+          ItemSeparatorComponent={() => <View style={{ height: 4 }} />}
+          renderSectionHeader={({ section }) => (
+            <View style={{ gap: 8 }}>
+              <Card
+                style={{
+                  padding: 8,
+                  alignSelf: 'flex-start',
+                  marginLeft: 16,
+                }}
+              >
+                <Text>{dayjs(section.title).format('DD/MM')}</Text>
+              </Card>
+              <FlatList
+                data={section.data}
+                renderItem={renderItem}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
+                contentContainerStyle={{ paddingHorizontal: 16 }}
+              />
+            </View>
+          )}
         />
-      </ImageBackground>
+      </LinearGradient>
     </SafeAreaView>
   );
 }
@@ -39,11 +87,6 @@ function UpcomingWeather({ weatherData }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  image: {
-    paddingTop: StatusBar.currentHeight || 0,
-    flex: 1,
-    objectFit: 'cover',
   },
   title: {
     color: 'white',
