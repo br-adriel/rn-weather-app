@@ -6,7 +6,7 @@ function Card({ children, style }) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#FFFC',
+    backgroundColor: '#FFFD',
     borderRadius: 8,
   },
 });
