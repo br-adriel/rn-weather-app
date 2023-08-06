@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { weatherTypes } from '../utils/weatherTypes';
 import dayjs from 'dayjs';
 
-function ListItem({ dt_txt, min, max, condition }) {
+function WeatherOverview({ dt_txt, min, max, condition }) {
   return (
     <View style={styles.item}>
       <Text style={styles.date}>{dayjs(dt_txt).format('HH:mm')}</Text>
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ListItem;
+export default WeatherOverview;
