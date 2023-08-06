@@ -1,7 +1,6 @@
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  ImageBackground,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -12,6 +11,7 @@ import HighLowTemperatures from '../components/HighLowTemperatures';
 import Location from '../components/Location';
 import MessageCard from '../components/MessageCard';
 import Temperature from '../components/Temperature';
+import WeatherImageBg from '../components/WeatherImageBg';
 import { weatherTypes } from '../utils/weatherTypes';
 
 function CurrentWeather({ weatherData }) {
@@ -27,13 +27,13 @@ function CurrentWeather({ weatherData }) {
   return (
     <SafeAreaView style={[styles.wrapper, { paddingBottom: padBottom }]}>
       <StatusBar backgroundColor='transparent' translucent />
-      <ImageBackground
-        style={{ flex: 1 }}
-        source={require('../../assets/img/bg_clouds.jpg')}
-      >
+      <WeatherImageBg weatherCondition={weatherCondition}>
         <LinearGradient
           style={styles.wrapper}
-          colors={['transparent', '#4EA3DB', '#6BBFDB']}
+          colors={[
+            'transparent',
+            ...weatherTypes[weatherCondition].gradientColors,
+          ]}
         >
           <ScrollView>
             <View style={styles.container}>
@@ -53,7 +53,7 @@ function CurrentWeather({ weatherData }) {
             </View>
           </ScrollView>
         </LinearGradient>
-      </ImageBackground>
+      </WeatherImageBg>
     </SafeAreaView>
   );
 }

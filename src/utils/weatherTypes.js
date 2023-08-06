@@ -1,42 +1,42 @@
 export const weatherTypes = {
   Clear: {
     icon: 'sun',
-    message: "It's a hot day",
-    backgroundColor: '#00a8ff',
+    message: 'O céu tá limpinho e ensolarado',
+    gradientColors: ['transparent', '#4EA3DB'],
   },
   Clouds: {
     icon: 'cloud',
-    message: 'You could live in the clouds',
-    backgroundColor: '#7ed6df',
+    message: 'Tem umas nuvens por aí, mas tá tranquilo',
+    gradientColors: ['#4EA3DB', '#6BBFDB'],
   },
   Drizzle: {
     icon: 'cloud-rain',
-    message: 'It might rain a little',
-    backgroundColor: '#487eb0',
+    message: 'Tem umas gotinhas caindo',
+    gradientColors: ['#97AAAE', '#7D918F'],
   },
   Haze: {
     icon: 'wind',
-    message: 'It might be a bit damp',
-    backgroundColor: '#95afc0',
+    message: 'A visão não tá lá essas coisas',
+    gradientColors: ['#9EA498', '#6A7064'],
   },
   Mist: {
     icon: 'align-justify',
-    message: 'It might be hard to see',
-    backgroundColor: '#8395a7',
+    message: 'Quase não dá pra enxergar nada',
+    gradientColors: ['#B9D0E7', '#99BAD9'],
   },
   Rain: {
     icon: 'umbrella',
-    message: "You'll need an umbrella",
-    backgroundColor: '#7f8fa6',
+    message: 'Tá caindo água do céu',
+    gradientColors: ['#757671', '#B1C3CD'],
   },
   Snow: {
     icon: 'cloud-snow',
-    message: "Let's build a snowman",
-    backgroundColor: '#9c88ff',
+    message: 'Você quer brincar na neve?',
+    gradientColors: ['#C5C8D2', '#929AA9'],
   },
-  Thnderstorm: {
+  Thunderstorm: {
     icon: 'zap',
-    message: 'It could get noisy',
-    backgroundColor: '#273c75',
+    message: 'Tempestade rolando, melhor ficar em casa',
+    gradientColors: ['#4A44C0', '#1B164F'],
   },
 };
