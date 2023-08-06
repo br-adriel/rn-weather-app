@@ -2,16 +2,13 @@ import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import dayjs from 'dayjs';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  FlatList,
   SafeAreaView,
   SectionList,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
-import Card from '../components/Card';
-import ListItem from '../components/ListItem';
+import DateWeatherOverview from '../components/DateWeatherOverview';
 import { weatherTypes } from '../utils/weatherTypes';
 
 function UpcomingWeather({ weatherData }) {
@@ -35,15 +32,6 @@ function UpcomingWeather({ weatherData }) {
     };
   });
 
-  const renderItem = ({ item }) => (
-    <ListItem
-      condition={item.weather[0].main}
-      dt_txt={item.dt_txt}
-      min={item.main.temp_min}
-      max={item.main.temp_max}
-    />
-  );
-
   return (
     <SafeAreaView style={[styles.container, { paddingBottom: paddingBottom }]}>
       <StatusBar translucent backgroundColor='transparent' />
@@ -58,25 +46,7 @@ function UpcomingWeather({ weatherData }) {
           keyExtractor={(item) => item.dt_txt}
           ItemSeparatorComponent={() => <View style={{ height: 4 }} />}
           renderSectionHeader={({ section }) => (
-            <View style={{ gap: 8 }}>
-              <Card
-                style={{
-                  padding: 8,
-                  alignSelf: 'flex-start',
-                  marginLeft: 16,
-                }}
-              >
-                <Text>{dayjs(section.title).format('DD/MM')}</Text>
-              </Card>
-              <FlatList
-                data={section.data}
-                renderItem={renderItem}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
-                contentContainerStyle={{ paddingHorizontal: 16 }}
-              />
-            </View>
+            <DateWeatherOverview data={section.data} title={section.title} />
           )}
         />
       </LinearGradient>
