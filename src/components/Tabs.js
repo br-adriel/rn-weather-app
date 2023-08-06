@@ -28,13 +28,14 @@ export default function Tabs({ weather }) {
     >
       <Tab.Screen
         name='Upcoming'
-        component={UpcomingWeather}
         options={{
           tabBarIcon: (props) => (
             <Feather name='clock' color={props.color} size={props.size} />
           ),
         }}
-      />
+      >
+        {() => <UpcomingWeather weatherData={weather.list} />}
+      </Tab.Screen>
       <Tab.Screen
         name='Current'
         options={{
@@ -43,17 +44,18 @@ export default function Tabs({ weather }) {
           ),
         }}
       >
-        {() => <CurrentWeather weatherData={weather} />}
+        {() => <CurrentWeather weatherData={weather.list[0]} />}
       </Tab.Screen>
       <Tab.Screen
         name='City'
-        component={City}
         options={{
           tabBarIcon: (props) => (
             <Feather name='map-pin' color={props.color} size={props.size} />
           ),
         }}
-      />
+      >
+        {() => <City weatherData={weather.city} />}
+      </Tab.Screen>
     </Tab.Navigator>
   );
 }
