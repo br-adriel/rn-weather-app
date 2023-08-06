@@ -14,7 +14,7 @@ function Temperature({ temeperature, unit, feels, iconName }) {
           </View>
         </View>
         <Text style={styles.sensationText}>
-          Feels like {feels}°{unit}
+          Sensação térmica de {feels}°{unit}
         </Text>
       </View>
     </Card>
